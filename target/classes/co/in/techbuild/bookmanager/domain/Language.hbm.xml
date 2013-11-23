@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 Nov, 2013 9:54:40 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.in.techbuild.bookmanager.domain.Language" table="LANGUAGE" schema="PUBLIC" catalog="TEST">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="langCode" type="string">
+            <column name="LANG_CODE" length="10" />
+        </property>
+        <property name="langDesc" type="string">
+            <column name="LANG_DESC" length="100" />
+        </property>
+        <set name="bookLangs" table="BOOK_LANG" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LANG_ID" />
+            </key>
+            <one-to-many class="co.in.techbuild.bookmanager.domain.BookLang" />
+        </set>
+    </class>
+</hibernate-mapping>

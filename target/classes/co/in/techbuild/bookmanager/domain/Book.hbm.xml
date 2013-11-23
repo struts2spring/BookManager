@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 19 Nov, 2013 9:54:40 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="co.in.techbuild.bookmanager.domain.Book" table="BOOK" schema="PUBLIC" catalog="TEST">
+        <id name="bookId" type="int">
+            <column name="BOOK_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="comments" type="clob">
+            <column name="COMMENTS" />
+        </property>
+        <property name="edition" type="string">
+            <column name="EDITION" length="100" />
+        </property>
+        <property name="hasCover" type="java.lang.Character">
+            <column name="HAS_COVER" length="1" />
+        </property>
+        <property name="isbn" type="string">
+            <column name="ISBN" />
+        </property>
+        <property name="isbn10" type="string">
+            <column name="ISBN_10" length="100" />
+        </property>
+        <property name="isbn13" type="string">
+            <column name="ISBN_13" length="100" />
+        </property>
+        <property name="path" type="string">
+            <column name="PATH" length="2000" />
+        </property>
+        <property name="pubDate" type="date">
+            <column name="PUB_DATE" length="8" />
+        </property>
+        <property name="rating" type="java.lang.Integer">
+            <column name="RATING" />
+        </property>
+        <property name="series" type="string">
+            <column name="SERIES" length="500" />
+        </property>
+        <property name="size" type="java.lang.Double">
+            <column name="SIZE" precision="17" scale="0" />
+        </property>
+        <property name="title" type="string">
+            <column name="TITLE" length="2000" />
+        </property>
+        <property name="uuid" type="string">
+            <column name="UUID" length="1000" />
+        </property>
+        <set name="bookLangs" table="BOOK_LANG" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BOOK_ID" />
+            </key>
+            <one-to-many class="co.in.techbuild.bookmanager.domain.BookLang" />
+        </set>
+        <set name="bookTags" table="BOOK_TAG" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BOOK_ID" />
+            </key>
+            <one-to-many class="co.in.techbuild.bookmanager.domain.BookTag" />
+        </set>
+        <set name="bookPublishers" table="BOOK_PUBLISHER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BOOK_ID" />
+            </key>
+            <one-to-many class="co.in.techbuild.bookmanager.domain.BookPublisher" />
+        </set>
+        <set name="bookAuthors" table="BOOK_AUTHOR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BOOK_ID" not-null="true" />
+            </key>
+            <one-to-many class="co.in.techbuild.bookmanager.domain.BookAuthor" />
+        </set>
+    </class>
+</hibernate-mapping>
